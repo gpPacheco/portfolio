@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Gabriel Pacheco ",
-  description: "Developed by gpPacheco",
+  title: "Gabriel Pacheco",
+  description: "Modern & Minimalist Portfolio by gpPacheco",
 };
 
 export default function RootLayout({
