@@ -1,7 +1,7 @@
 import "./style.css";
 const Hero = () => {
   const textGradient =
-    "bg-gradient-to-br from-teal-100 via-teal-200 to-teal-500 text-transparent bg-clip-text";
+    "bg-gradient-to-br from-teal-300 via-teal-200 to-teal-700 text-transparent bg-clip-text";
 
   return (
     <div className="flex items-center justify-center h-screen">
