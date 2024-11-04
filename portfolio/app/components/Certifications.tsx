@@ -1,7 +1,8 @@
 const Certifications = () => {
     const certifications = [
-      { title: "Certificação 1", issuer: "Instituição A", date: "Janeiro 2023" },
-      { title: "Certificação 2", issuer: "Instituição B", date: "Março 2023" },
+      { title: "Database Design", issuer: "Oracle Academy", date: "2024" },
+      { title: "NLW Journey - React.js", issuer: "Rocketseat", date: "2024" },
+      { title: "Computer Fundamentals", issuer: "IBSEC (Instituto Brasileiro de Cibersegurança", date: "2023" },
     ];
   
     return (
