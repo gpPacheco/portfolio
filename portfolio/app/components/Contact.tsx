@@ -1,9 +1,9 @@
 const Contact = () => {
   return (
     <section className="py-16 px-6 bg-gray-900 text-white text-center">
-      <h2 className="text-4xl md:text-5xl font-bold mb-8">Contato</h2>
+      <h2 className="text-4xl md:text-5xl font-bold mb-8">Contact</h2>
       <p className="mb-4 text-lg text-gray-300">
-        Conecte-se comigo em qualquer uma das plataformas abaixo:
+        Connect with me on any of the plataforms below:
       </p>
       <div className="flex justify-center space-x-6">
         <a

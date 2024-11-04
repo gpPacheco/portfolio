@@ -7,7 +7,7 @@ const Certifications = () => {
   
     return (
       <section className="py-16 px-6 bg-gray-800 text-white">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">Certificações</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">Certifications</h2>
         <div className="space-y-6 max-w-4xl mx-auto">
           {certifications.map((cert, index) => (
             <div key={index} className="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transform transition hover:scale-105">

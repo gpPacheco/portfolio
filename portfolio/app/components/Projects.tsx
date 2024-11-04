@@ -7,7 +7,7 @@ const Projects = () => {
 
   return (
     <section className="py-16 px-6 bg-gray-900 text-white">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">Projetos</h2>
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">Projects</h2>
       <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
         {projects.map((project, index) => (
           <a

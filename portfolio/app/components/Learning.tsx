@@ -3,7 +3,7 @@ const Learning = () => {
   
     return (
       <section className="py-16 px-6 bg-gray-800 text-white">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">O que estou aprendendo</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">What I am learning</h2>
         <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
           {learning.map((item, index) => (
             <div
