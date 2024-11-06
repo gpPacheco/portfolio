@@ -1,5 +1,5 @@
 const Learning = () => {
-    const learning = ["TypeScript", "Oracle DB", "English", "Artificial Intelligence", "Machine Learning"];
+    const learning = ["TypeScript", "Oracle DB", "English", "Artificial Intelligence", "Machine Learning", "Google Cloud"];
   
     return (
       <section className="py-16 px-6 bg-gray-800 text-white">

@@ -1,5 +1,5 @@
 const Skills = () => {
-    const skills = ["React", "Next.js", "Tailwind CSS", "Oracle DB", "PostgreSQL", "English", "Git", "GitHub", "VsCode", "SEO"];
+    const skills = ["React", "Next.js", "Tailwind CSS", "Oracle DB", "PostgreSQL", "English", "Git", "GitHub", "VsCode", "SEO", "AI"];
   
     return (
       <section className="py-16 px-6 bg-gray-900 text-white">
