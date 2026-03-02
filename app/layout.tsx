@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import AnimationProvider from "@/components/AnimationProvider";
 
 export const metadata: Metadata = {
   title: "Gabriel Pacheco — Software Engineer",
@@ -39,7 +40,7 @@ export default function RootLayout({
         {/* Custom cursor */}
         <CustomCursor />
 
-        {children}
+        <AnimationProvider>{children}</AnimationProvider>
       </body>
     </html>
   );

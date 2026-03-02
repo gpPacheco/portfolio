@@ -2,6 +2,7 @@
 
 import Hero from "@/components/Hero";
 import ProjectGallery from "@/components/ProjectGallery";
+import Education from "@/components/Education";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <Hero />
       <ProjectGallery />
+      <Education />
       <Footer />
     </main>
   );

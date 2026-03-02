@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Code2 } from "lucide-react";
+import Image from "next/image";
 import { projects, Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -161,9 +162,9 @@ export default function ProjectGallery() {
             />
 
             {/* Panel */}
-            <div
-              className="fixed inset-0 z-50 p-4 md:p-8 flex items-center justify-center"
-              onClick={() => setSelected(null)}
+            <motion.div
+              className="fixed z-50"
+              style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
             >
               <motion.div
                 key={`panel-${selected.id}`}
@@ -177,8 +178,8 @@ export default function ProjectGallery() {
                   damping: 30,
                 }}
                 className={cn(
-                  "w-full md:max-w-2xl",
-                  "max-h-full overflow-y-auto",
+                  "w-[calc(100vw-2rem)] md:max-w-2xl",
+                  "max-h-[calc(100vh-2rem)] overflow-y-auto",
                   "bg-[#111111] border border-white/10 rounded-2xl overflow-x-hidden",
                   "gradient-border"
                 )}
@@ -194,11 +195,13 @@ export default function ProjectGallery() {
 
               {/* Project image */}
               {selected.image && (
-                <div className="w-full aspect-video bg-black/40 overflow-hidden">
-                  <img
+                <div className="relative w-full aspect-video bg-black/40 overflow-hidden">
+                  <Image
                     src={selected.image}
                     alt={selected.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) calc(100vw - 2rem), 42rem"
+                    className="object-cover"
                   />
                 </div>
               )}
@@ -299,8 +302,8 @@ export default function ProjectGallery() {
                   <ArrowUpRight size={16} />
                 </a>
               </div>
+              </motion.div>
             </motion.div>
-            </div>
           </>
         )}
       </AnimatePresence>
