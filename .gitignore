@@ -1,0 +1,6 @@
+# Ignorar dependências e arquivos grandes
+node_modules/
+.next/
+dist/
+.env
+*.log
