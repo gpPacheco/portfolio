@@ -2,27 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
-
-const links = [
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/gabriel-f-pacheco",
-    icon: Linkedin,
-    description: "Professional network",
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/gppacheco",
-    icon: Github,
-    description: "Open source work",
-  },
-  {
-    label: "Email",
-    href: "mailto:gabrielfppacheco@gmail.com",
-    icon: Mail,
-    description: "Get in touch",
-  },
-];
+import { uiText } from "@/data/ui-text";
+import { SiteLocale } from "@/lib/i18n";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -41,7 +22,34 @@ const itemVariants = {
   },
 };
 
-export default function Footer() {
+type FooterProps = {
+  locale: SiteLocale;
+};
+
+export default function Footer({ locale }: FooterProps) {
+  const text = uiText[locale].footer;
+
+  const links = [
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/gabriel-f-pacheco",
+      icon: Linkedin,
+      description: text.linkedinDescription,
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/gppacheco",
+      icon: Github,
+      description: text.githubDescription,
+    },
+    {
+      label: "Email",
+      href: "mailto:gabrielfppacheco@gmail.com",
+      icon: Mail,
+      description: text.emailDescription,
+    },
+  ];
+
   return (
     <footer className="relative border-t border-white/5 py-24 px-6 md:px-16 lg:px-32 overflow-hidden">
       {/* Background gradient */}
@@ -64,14 +72,13 @@ export default function Footer() {
           {/* Header */}
           <motion.div variants={itemVariants} className="mb-16 text-center">
             <p className="text-accent font-mono text-xs tracking-[0.35em] uppercase mb-4">
-              Let&apos;s Connect
+              {text.badge}
             </p>
             <h2 className="text-[clamp(2rem,5vw,4rem)] font-black tracking-tighter text-white leading-none">
-              Say Hello.
+              {text.title}
             </h2>
             <p className="text-white/40 mt-4 text-sm max-w-md mx-auto leading-relaxed">
-              Available for freelance projects, collaborations, and full-time
-              opportunities.
+              {text.description}
             </p>
           </motion.div>
 
@@ -113,10 +120,10 @@ export default function Footer() {
             className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5"
           >
             <p className="text-white/20 font-mono text-xs tracking-wider">
-              © 2026 Gabriel Pacheco. All rights reserved.
+              {text.rights}
             </p>
             <p className="text-white/20 font-mono text-xs tracking-wider">
-              Built with Next.js · GSAP · Framer Motion
+              {text.builtWith}
             </p>
           </motion.div>
         </motion.div>

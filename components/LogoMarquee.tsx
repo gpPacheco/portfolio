@@ -28,7 +28,7 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
 
       gsap.to(trackRef.current, {
         xPercent: -50,
-        duration: 28,
+        duration: 48,
         ease: "none",
         repeat: -1,
       });

@@ -1,3 +1,5 @@
+import { SiteLocale } from "@/lib/i18n";
+
 export interface Project {
   id: string;
   index: string;
@@ -13,7 +15,7 @@ export interface Project {
   image?: string;
 }
 
-export const projects: Project[] = [
+const enUSProjects: Project[] = [
   {
     id: "Rita Pacheco Clinic",
     index: "01",
@@ -49,7 +51,7 @@ export const projects: Project[] = [
     subtitle: "Mobile app for mental health support and resources",
     description:
       "A mobile application designed to provide mental health support and resources to users. Features include mood tracking, guided meditation sessions, crisis support, and personalized wellness recommendations.",
-    technologies: ["React Native", "TypeScript", "Firebase", "Node.js"],
+    technologies: ["Expo go", "TypeScript", "Supabse", "Node.js"],
     year: "2026",
     url: "https://",
     color: "#0a0a0a",
@@ -57,3 +59,59 @@ export const projects: Project[] = [
     tags: ["Mobile App", "Mental Health", "Wellness"],
   },
 ];
+
+const ptBRProjects: Project[] = [
+  {
+    id: "Clinica Rita Pacheco",
+    index: "01",
+    title: "Clinica Rita Pacheco",
+    subtitle: "Sistema de gestão de clínica médica com agendamento de consultas",
+    description:
+      "Um sistema completo de gestão para clínica médica que otimiza agendamentos, prontuários e processos de cobrança. Desenvolvido com interface intuitiva e backend robusto para melhorar a eficiência operacional e a experiência dos pacientes.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "Supabase"],
+    year: "2025",
+    url: "https://www.clinicaritapacheco.com.br",
+    color: "#0a0a0a",
+    accentColor: "#818cf8",
+    tags: ["Aplicação Web", "REST Api", "Design Systems"],
+  },
+  {
+    id: "PATU HUB",
+    index: "02",
+    title: "PATU HUB",
+    subtitle: "Dashboard em tempo real para monitoramento e gestão de serviços públicos",
+    description:
+      "Um dashboard em tempo real para monitoramento e gestão de serviços públicos, com métricas de desempenho, alocação de recursos e engajamento dos cidadãos. Construído com foco em escalabilidade e experiência do usuário para apoiar decisões mais eficientes.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "Supabase"],
+    year: "2025",
+    url: "https://patuhub.vercel.app",
+    color: "#0a0a0a",
+    accentColor: "#34d399",
+    tags: ["SaaS", "Tempo Real", "Ferramentas de Insights"],
+  },
+  {
+    id: "Você Está Bem?",
+    index: "03",
+    title: "Você Está Bem?",
+    subtitle: "Aplicativo mobile para suporte e recursos de saúde mental",
+    description:
+      "Um aplicativo mobile criado para oferecer suporte e recursos de saúde mental aos usuários. Inclui acompanhamento de humor, meditações guiadas, apoio em crises e recomendações personalizadas de bem-estar.",
+    technologies: ["Expo go", "TypeScript", "Supabse", "Node.js"],
+    year: "2026",
+    url: "https://",
+    color: "#0a0a0a",
+    accentColor: "#fb923c",
+    tags: ["Aplicativo Mobile", "Saúde Mental", "Bem-estar"],
+  },
+];
+
+export const projectsByLocale: Record<SiteLocale, Project[]> = {
+  "en-US": enUSProjects,
+  "pt-BR": ptBRProjects,
+};
+
+export const projects: Project[] = projectsByLocale["en-US"];
+
+export function getProjects(locale: SiteLocale): Project[] {
+  return projectsByLocale[locale];
+}

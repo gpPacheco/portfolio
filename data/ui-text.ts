@@ -1,0 +1,105 @@
+import { SiteLocale } from "@/lib/i18n";
+
+type HeroText = {
+  badge: string;
+  title: string;
+  cta: string;
+  worksBelow: string;
+};
+
+type ProjectsText = {
+  badge: string;
+  title: string;
+  previewFallback: string;
+  closeButtonAria: string;
+  technologies: string;
+  visitSite: string;
+};
+
+type EducationText = {
+  badge: string;
+  title: string;
+};
+
+type FooterText = {
+  badge: string;
+  title: string;
+  description: string;
+  linkedinDescription: string;
+  githubDescription: string;
+  emailDescription: string;
+  rights: string;
+  builtWith: string;
+};
+
+export type SiteText = {
+  hero: HeroText;
+  projects: ProjectsText;
+  education: EducationText;
+  footer: FooterText;
+};
+
+export const uiText: Record<SiteLocale, SiteText> = {
+  "en-US": {
+    hero: {
+      badge: "Portfolio",
+      title: "Software Engineer",
+      cta: "SCROLL TO EXPLORE",
+      worksBelow: "Works Below",
+    },
+    projects: {
+      badge: "Selected Work",
+      title: "Works.",
+      previewFallback: "Project Preview",
+      closeButtonAria: "Close",
+      technologies: "Technologies",
+      visitSite: "Visit Site",
+    },
+    education: {
+      badge: "Education & Certifications",
+      title: "Learning Path.",
+    },
+    footer: {
+      badge: "Let's Connect",
+      title: "Say Hello.",
+      description:
+        "Available for freelance projects, collaborations, and full-time opportunities.",
+      linkedinDescription: "Professional network",
+      githubDescription: "Open source work",
+      emailDescription: "Get in touch",
+      rights: "© 2026 Gabriel Pacheco. All rights reserved.",
+      builtWith: "Built with Next.js · GSAP · Framer Motion",
+    },
+  },
+  "pt-BR": {
+    hero: {
+      badge: "Portfólio",
+      title: "Engenheiro de Software",
+      cta: "ROLE PARA EXPLORAR",
+      worksBelow: "Projetos Abaixo",
+    },
+    projects: {
+      badge: "Projetos em Destaque",
+      title: "Projetos.",
+      previewFallback: "Prévia do Projeto",
+      closeButtonAria: "Fechar",
+      technologies: "Tecnologias",
+      visitSite: "Visitar Site",
+    },
+    education: {
+      badge: "Formação & Certificações",
+      title: "Trilha de Aprendizado.",
+    },
+    footer: {
+      badge: "Vamos nos Conectar",
+      title: "Diga Olá.",
+      description:
+        "Disponível para projetos freelance, colaborações e oportunidades em tempo integral.",
+      linkedinDescription: "Rede profissional",
+      githubDescription: "Projetos open source",
+      emailDescription: "Entre em contato",
+      rights: "© 2026 Gabriel Pacheco. Todos os direitos reservados.",
+      builtWith: "Construído com Next.js · GSAP · Framer Motion",
+    },
+  },
+};

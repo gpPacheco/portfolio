@@ -4,12 +4,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, Code2 } from "lucide-react";
 import Image from "next/image";
-import { projects, Project } from "@/data/projects";
+import { getProjects, Project } from "@/data/projects";
+import { uiText } from "@/data/ui-text";
+import { SiteLocale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-export default function ProjectGallery() {
+type ProjectGalleryProps = {
+  locale: SiteLocale;
+};
+
+export default function ProjectGallery({ locale }: ProjectGalleryProps) {
   const [selected, setSelected] = useState<Project | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const projects = getProjects(locale);
+  const text = uiText[locale].projects;
 
   // Lock scroll when overlay is open
   useEffect(() => {
@@ -32,6 +40,10 @@ export default function ProjectGallery() {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
+  useEffect(() => {
+    setSelected(null);
+  }, [locale]);
+
   return (
     <section id="works" className="relative py-40 px-6 md:px-16 lg:px-32">
       {/* Section header */}
@@ -43,10 +55,10 @@ export default function ProjectGallery() {
         className="mb-20"
       >
         <p className="text-accent font-mono text-xs tracking-[0.35em] uppercase mb-4">
-          Selected Work
+          {text.badge}
         </p>
         <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black tracking-tighter text-white leading-none">
-          Works.
+          {text.title}
         </h2>
         <div className="mt-4 w-20 h-px bg-gradient-to-r from-accent to-transparent" />
       </motion.div>
@@ -207,7 +219,9 @@ export default function ProjectGallery() {
               )}
               {!selected.image && (
                 <div className="w-full aspect-video bg-black/30 flex items-center justify-center border-b border-white/5">
-                  <span className="text-white/20 font-mono text-xs uppercase tracking-widest">Project Preview</span>
+                  <span className="text-white/20 font-mono text-xs uppercase tracking-widest">
+                    {text.previewFallback}
+                  </span>
                 </div>
               )}
 
@@ -244,7 +258,7 @@ export default function ProjectGallery() {
                       "transition-all duration-200 ml-4 flex-shrink-0",
                       "relative z-10 pointer-events-auto"
                     )}
-                    aria-label="Close"
+                    aria-label={text.closeButtonAria}
                     data-cursor-hover
                   >
                     <X size={18} className="text-white/60" />
@@ -261,7 +275,7 @@ export default function ProjectGallery() {
                   <div className="flex items-center gap-2 mb-3">
                     <Code2 size={14} className="text-white/30" />
                     <span className="text-xs font-mono text-white/30 uppercase tracking-widest">
-                      Technologies
+                      {text.technologies}
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -298,7 +312,7 @@ export default function ProjectGallery() {
                   }}
                   data-cursor-hover
                 >
-                  Visit Site
+                  {text.visitSite}
                   <ArrowUpRight size={16} />
                 </a>
               </div>

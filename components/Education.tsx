@@ -6,14 +6,22 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import LogoMarquee from "@/components/LogoMarquee";
-import { educationItems, institutionLogos } from "@/data/education";
+import { getEducationItems, institutionLogos } from "@/data/education";
+import { uiText } from "@/data/ui-text";
+import { SiteLocale } from "@/lib/i18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Education() {
+type EducationProps = {
+  locale: SiteLocale;
+};
+
+export default function Education({ locale }: EducationProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
   const [failedLogos, setFailedLogos] = useState<Record<string, boolean>>({});
+  const educationItems = getEducationItems(locale);
+  const text = uiText[locale].education;
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -121,10 +129,10 @@ export default function Education() {
 
       <div className="relative z-10 mb-16">
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.35em] text-accent">
-          Education & Certifications
+          {text.badge}
         </p>
         <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black leading-none tracking-tighter text-white">
-          Learning Path.
+          {text.title}
         </h2>
         <div className="mt-4 h-px w-24 bg-gradient-to-r from-accent to-transparent" />
       </div>
@@ -132,7 +140,7 @@ export default function Education() {
       <div className="relative z-10 grid gap-5 md:grid-cols-2">
         {educationItems.map((item, index) => (
           <div
-            key={item.id}
+            key={`${item.id}-${index}`}
             ref={(element) => {
               cardsRef.current[index] = element;
             }}

@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import SignatureDisplay from "@/components/SignatureDisplay";
 import MistCanvas from "@/components/MistCanvas";
+import { uiText } from "@/data/ui-text";
+import { SiteLocale } from "@/lib/i18n";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,9 +28,14 @@ const itemVariants = {
   },
 };
 
-export default function Hero() {
+type HeroProps = {
+  locale: SiteLocale;
+};
+
+export default function Hero({ locale }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollHintRef = useRef<HTMLDivElement>(null);
+  const text = uiText[locale].hero;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -78,7 +85,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-accent text-xs tracking-[0.35em] uppercase mb-8 font-mono"
         >
-          Portfolio
+          {text.badge}
         </motion.p>
 
         {/* Name */}
@@ -94,7 +101,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-[clamp(1rem,3vw,1.75rem)] font-light tracking-[0.2em] uppercase text-white/70"
         >
-          Software Engineer
+          {text.title}
         </motion.h2>
 
         {/* ASCII Signature */}
@@ -115,7 +122,7 @@ export default function Hero() {
           className="mt-8 inline-flex items-center gap-2 text-sm text-white/50 hover:text-accent transition-colors duration-300 font-mono tracking-wider"
           data-cursor-hover
         >
-          <span>SCROLL TO EXPLORE</span>
+          <span>{text.cta}</span>
           <svg
             width="14"
             height="14"
@@ -141,7 +148,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-xs text-white/20 tracking-widest font-mono uppercase">
-          Works Below
+          {text.worksBelow}
         </span>
       </div>
     </section>
