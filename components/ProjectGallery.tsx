@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUpRight, Code2 } from "lucide-react";
+import { X, ArrowUpRight, Code2, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { getProjects, Project } from "@/data/projects";
 import { uiText } from "@/data/ui-text";
@@ -16,8 +16,16 @@ type ProjectGalleryProps = {
 export default function ProjectGallery({ locale }: ProjectGalleryProps) {
   const [selected, setSelected] = useState<Project | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const projects = getProjects(locale);
   const text = uiText[locale].projects;
+  const selectedImages = selected?.images ?? [];
+  const hasSelectedImages = selectedImages.length > 0;
+  const hasMultipleSelectedImages = selectedImages.length > 1;
+  const safeActiveImageIndex = Math.min(
+    activeImageIndex,
+    Math.max(selectedImages.length - 1, 0)
+  );
 
   // Lock scroll when overlay is open
   useEffect(() => {
@@ -42,7 +50,28 @@ export default function ProjectGallery({ locale }: ProjectGalleryProps) {
 
   useEffect(() => {
     setSelected(null);
+    setActiveImageIndex(0);
   }, [locale]);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [selected?.id]);
+
+  const handlePreviousImage = () => {
+    if (!hasMultipleSelectedImages) return;
+
+    setActiveImageIndex((previousIndex) =>
+      previousIndex === 0 ? selectedImages.length - 1 : previousIndex - 1
+    );
+  };
+
+  const handleNextImage = () => {
+    if (!hasMultipleSelectedImages) return;
+
+    setActiveImageIndex((previousIndex) =>
+      previousIndex === selectedImages.length - 1 ? 0 : previousIndex + 1
+    );
+  };
 
   return (
     <section id="works" className="relative py-40 px-6 md:px-16 lg:px-32">
@@ -205,19 +234,84 @@ export default function ProjectGallery({ locale }: ProjectGalleryProps) {
                 }}
               />
 
-              {/* Project image */}
-              {selected.image && (
+              {/* Project images carousel */}
+              {hasSelectedImages && selected && (
                 <div className="relative w-full aspect-video bg-black/40 overflow-hidden">
-                  <Image
-                    src={selected.image}
-                    alt={selected.title}
-                    fill
-                    sizes="(max-width: 768px) calc(100vw - 2rem), 42rem"
-                    className="object-cover"
-                  />
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${selected.id}-${safeActiveImageIndex}`}
+                      initial={{ opacity: 0.3, scale: 1.02 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0.2, scale: 0.98 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={selectedImages[safeActiveImageIndex]}
+                        alt={`${selected.title} ${safeActiveImageIndex + 1}`}
+                        fill
+                        sizes="(max-width: 768px) calc(100vw - 2rem), 42rem"
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {hasMultipleSelectedImages && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={handlePreviousImage}
+                        className={cn(
+                          "absolute left-3 top-1/2 -translate-y-1/2",
+                          "p-2 rounded-full border border-white/15",
+                          "bg-black/40 text-white/80",
+                          "hover:bg-black/60 hover:text-white",
+                          "transition-all duration-200"
+                        )}
+                        aria-label={text.previousImageAria}
+                        data-cursor-hover
+                      >
+                        <ChevronLeft size={18} />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={handleNextImage}
+                        className={cn(
+                          "absolute right-3 top-1/2 -translate-y-1/2",
+                          "p-2 rounded-full border border-white/15",
+                          "bg-black/40 text-white/80",
+                          "hover:bg-black/60 hover:text-white",
+                          "transition-all duration-200"
+                        )}
+                        aria-label={text.nextImageAria}
+                        data-cursor-hover
+                      >
+                        <ChevronRight size={18} />
+                      </button>
+
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                        {selectedImages.map((_, index) => (
+                          <button
+                            key={`${selected.id}-image-${index}`}
+                            type="button"
+                            onClick={() => setActiveImageIndex(index)}
+                            className={cn(
+                              "h-1.5 rounded-full transition-all duration-200",
+                              index === safeActiveImageIndex
+                                ? "w-6 bg-white"
+                                : "w-1.5 bg-white/40 hover:bg-white/60"
+                            )}
+                            aria-label={`${text.goToImageAria} ${index + 1}`}
+                            data-cursor-hover
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
-              {!selected.image && (
+              {!hasSelectedImages && (
                 <div className="w-full aspect-video bg-black/30 flex items-center justify-center border-b border-white/5">
                   <span className="text-white/20 font-mono text-xs uppercase tracking-widest">
                     {text.previewFallback}

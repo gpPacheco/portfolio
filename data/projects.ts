@@ -12,7 +12,7 @@ export interface Project {
   color: string;
   accentColor: string;
   tags: string[];
-  image?: string;
+  images: string[];
 }
 
 const enUSProjects: Project[] = [
@@ -29,6 +29,7 @@ const enUSProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#818cf8",
     tags: ["Web App", "REST Api", "Design Systems"],
+    images: [],
   },
   {
     id: "PATU HUB",
@@ -43,6 +44,7 @@ const enUSProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#34d399",
     tags: ["SaaS", "Real-Time", "Insight Tools"],
+    images: [],
   },
   {
     id: "Are You Ok?",
@@ -57,6 +59,7 @@ const enUSProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#fb923c",
     tags: ["Mobile App", "Mental Health", "Wellness"],
+    images: [],
   },
 ];
 
@@ -74,6 +77,7 @@ const ptBRProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#818cf8",
     tags: ["Aplicação Web", "REST Api", "Design Systems"],
+    images: [],
   },
   {
     id: "PATU HUB",
@@ -88,6 +92,7 @@ const ptBRProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#34d399",
     tags: ["SaaS", "Tempo Real", "Ferramentas de Insights"],
+    images: [],
   },
   {
     id: "Você Está Bem?",
@@ -102,6 +107,7 @@ const ptBRProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#fb923c",
     tags: ["Aplicativo Mobile", "Saúde Mental", "Bem-estar"],
+    images: [],
   },
 ];
 

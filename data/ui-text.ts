@@ -12,6 +12,9 @@ type ProjectsText = {
   title: string;
   previewFallback: string;
   closeButtonAria: string;
+  previousImageAria: string;
+  nextImageAria: string;
+  goToImageAria: string;
   technologies: string;
   visitSite: string;
 };
@@ -52,6 +55,9 @@ export const uiText: Record<SiteLocale, SiteText> = {
       title: "Works.",
       previewFallback: "Project Preview",
       closeButtonAria: "Close",
+      previousImageAria: "Previous project image",
+      nextImageAria: "Next project image",
+      goToImageAria: "Go to image",
       technologies: "Technologies",
       visitSite: "Visit Site",
     },
@@ -83,6 +89,9 @@ export const uiText: Record<SiteLocale, SiteText> = {
       title: "Projetos.",
       previewFallback: "Prévia do Projeto",
       closeButtonAria: "Fechar",
+      previousImageAria: "Imagem anterior do projeto",
+      nextImageAria: "Próxima imagem do projeto",
+      goToImageAria: "Ir para a imagem",
       technologies: "Tecnologias",
       visitSite: "Visitar Site",
     },
