@@ -59,7 +59,7 @@ export const uiText: Record<SiteLocale, SiteText> = {
       nextImageAria: "Next project image",
       goToImageAria: "Go to image",
       technologies: "Technologies",
-      visitSite: "Visit Site",
+      visitSite: "Visit Website",
     },
     education: {
       badge: "Education & Certifications",
@@ -93,7 +93,7 @@ export const uiText: Record<SiteLocale, SiteText> = {
       nextImageAria: "Próxima imagem do projeto",
       goToImageAria: "Ir para a imagem",
       technologies: "Tecnologias",
-      visitSite: "Visitar Site",
+      visitSite: "Visitar Website",
     },
     education: {
       badge: "Formação & Certificações",
