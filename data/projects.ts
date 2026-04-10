@@ -61,6 +61,21 @@ const enUSProjects: Project[] = [
     tags: ["Mobile App", "Mental Health", "Wellness"],
     images: [],
   },
+    {
+    id: "CIPMP",
+    index: "04",
+    title: "CIPMP",
+    subtitle: "Landing page for an event about health, technology and innovation",
+    description:
+      "A landing page created for the CIPMP event, which focuses on health, technology, and innovation. The page features a modern design with interactive elements to engage visitors and provide information about the event's schedule, speakers, and registration process.",
+    technologies: ["Next.js", "TypeScript", "Node.js"],
+    year: "2026",
+    url: "https://cipmp.com.br",
+    color: "#0a0a0a",
+    accentColor: "#f43f5e",
+    tags: ["Landing Page", "Event", "Health Tech"],
+    images: [],
+  },
 ];
 
 const ptBRProjects: Project[] = [
@@ -107,6 +122,21 @@ const ptBRProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#fb923c",
     tags: ["Aplicativo Mobile", "Saúde Mental", "Bem-estar"],
+    images: [],
+  },
+      {
+    id: "CIPMP",
+    index: "04",
+    title: "CIPMP",
+    subtitle: "Landing page para um evento sobre saúde, tecnologia e inovação",
+    description:
+      "Uma landing page criada para o evento CIPMP, que se concentra em saúde, tecnologia e inovação. A página apresenta um design moderno com elementos interativos para engajar visitantes e fornecer informações sobre o cronograma, palestrantes e processo de inscrição.",
+    technologies: ["Next.js", "TypeScript", "Node.js"],
+    year: "2026",
+    url: "https://cipmp.com.br",
+    color: "#0a0a0a",
+    accentColor: "#f43f5e",
+    tags: ["Landing Page", "Evento", "Tecnologia em Saúde"],
     images: [],
   },
 ];

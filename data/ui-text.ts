@@ -10,6 +10,8 @@ type HeroText = {
 type ProjectsText = {
   badge: string;
   title: string;
+  description: string;
+  scrollHint: string;
   previewFallback: string;
   closeButtonAria: string;
   previousImageAria: string;
@@ -51,8 +53,11 @@ export const uiText: Record<SiteLocale, SiteText> = {
       worksBelow: "Works Below",
     },
     projects: {
-      badge: "Selected Work",
-      title: "Works.",
+      badge: "Featured Work",
+      title: "Featured Work.",
+      description:
+        "A horizontal gallery of product moments, interfaces, and systems that use depth, color, and motion to feel tactile.",
+      scrollHint: "Drag sideways to explore the full set.",
       previewFallback: "Project Preview",
       closeButtonAria: "Close",
       previousImageAria: "Previous project image",
@@ -85,8 +90,11 @@ export const uiText: Record<SiteLocale, SiteText> = {
       worksBelow: "Projetos Abaixo",
     },
     projects: {
-      badge: "Projetos em Destaque",
-      title: "Projetos.",
+      badge: "Trabalhos em Destaque",
+      title: "Featured Work.",
+      description:
+        "Uma galeria horizontal de momentos de produto, interfaces e sistemas que usam profundidade, cor e movimento para parecer tátil.",
+      scrollHint: "Arraste para os lados para explorar tudo.",
       previewFallback: "Prévia do Projeto",
       closeButtonAria: "Fechar",
       previousImageAria: "Imagem anterior do projeto",

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Hero from "@/components/Hero";
-import ProjectGallery from "@/components/ProjectGallery";
+import FeaturedWork from "@/components/FeaturedWork";
 import Education from "@/components/Education";
 import Footer from "@/components/Footer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -19,7 +19,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <LanguageSwitcher locale={locale} onLocaleChange={setLocale} />
       <Hero locale={locale} />
-      <ProjectGallery locale={locale} />
+      <FeaturedWork locale={locale} />
       <Education locale={locale} />
       <Footer locale={locale} />
     </main>
