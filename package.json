@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.6",
+    "@headlessui/react": "^2.2.10",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.19",
     "gsap": "^3.12.5",

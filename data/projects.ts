@@ -4,7 +4,6 @@ export interface Project {
   id: string;
   index: string;
   title: string;
-  subtitle: string;
   description: string;
   technologies: string[];
   year: string;
@@ -20,10 +19,9 @@ const enUSProjects: Project[] = [
     id: "Rita Pacheco Clinic",
     index: "01",
     title: "Rita Pacheco Clinic",
-    subtitle: "Medical clinic management system with appointment scheduling",
     description:
       "A comprehensive medical clinic management system that streamlines appointment scheduling, patient records, and billing processes. Built with a user-friendly interface and robust backend to enhance operational efficiency and patient experience.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "Supabase"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "PostgreSQL"],
     year: "2025",
     url: "https://www.clinicaritapacheco.com.br",
     color: "#0a0a0a",
@@ -35,10 +33,9 @@ const enUSProjects: Project[] = [
     id: "PATU HUB",
     index: "02",
     title: "PATU HUB",
-    subtitle: "Real-Time dashboard for monitoring and managing puclicitary services",
     description:
       "A real-time dashboard designed for monitoring and managing public services, providing insights into performance metrics, resource allocation, and citizen engagement. Built with a focus on scalability and user experience to support efficient decision-making.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "Supabase"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "PostgreSQL"],
     year: "2025",
     url: "https://patuhub.vercel.app",
     color: "#0a0a0a",
@@ -50,7 +47,6 @@ const enUSProjects: Project[] = [
     id: "Are You Ok?",
     index: "03",
     title: "Are You Ok?",
-    subtitle: "Mobile app for mental health support and resources",
     description:
       "A mobile application designed to provide mental health support and resources to users. Features include mood tracking, guided meditation sessions, crisis support, and personalized wellness recommendations.",
     technologies: ["Expo go", "TypeScript", "Supabse", "Node.js"],
@@ -65,7 +61,6 @@ const enUSProjects: Project[] = [
     id: "CIPMP",
     index: "04",
     title: "CIPMP",
-    subtitle: "Landing page for an event about health, technology and innovation",
     description:
       "A landing page created for the CIPMP event, which focuses on health, technology, and innovation. The page features a modern design with interactive elements to engage visitors and provide information about the event's schedule, speakers, and registration process.",
     technologies: ["Next.js", "TypeScript", "Node.js"],
@@ -83,10 +78,9 @@ const ptBRProjects: Project[] = [
     id: "Clinica Rita Pacheco",
     index: "01",
     title: "Clinica Rita Pacheco",
-    subtitle: "Sistema de gestão de clínica médica com agendamento de consultas",
     description:
       "Um sistema completo de gestão para clínica médica que otimiza agendamentos, prontuários e processos de cobrança. Desenvolvido com interface intuitiva e backend robusto para melhorar a eficiência operacional e a experiência dos pacientes.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "Supabase"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "PostgreSQL"],
     year: "2025",
     url: "https://www.clinicaritapacheco.com.br",
     color: "#0a0a0a",
@@ -98,10 +92,9 @@ const ptBRProjects: Project[] = [
     id: "PATU HUB",
     index: "02",
     title: "PATU HUB",
-    subtitle: "Dashboard em tempo real para monitoramento e gestão de serviços públicos",
     description:
       "Um dashboard em tempo real para monitoramento e gestão de serviços públicos, com métricas de desempenho, alocação de recursos e engajamento dos cidadãos. Construído com foco em escalabilidade e experiência do usuário para apoiar decisões mais eficientes.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "Supabase"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "REST Api", "PostgreSQL"],
     year: "2025",
     url: "https://patuhub.vercel.app",
     color: "#0a0a0a",
@@ -113,7 +106,6 @@ const ptBRProjects: Project[] = [
     id: "Você Está Bem?",
     index: "03",
     title: "Você Está Bem?",
-    subtitle: "Aplicativo mobile para suporte e recursos de saúde mental",
     description:
       "Um aplicativo mobile criado para oferecer suporte e recursos de saúde mental aos usuários. Inclui acompanhamento de humor, meditações guiadas, apoio em crises e recomendações personalizadas de bem-estar.",
     technologies: ["Expo go", "TypeScript", "Supabse", "Node.js"],
@@ -128,7 +120,6 @@ const ptBRProjects: Project[] = [
     id: "CIPMP",
     index: "04",
     title: "CIPMP",
-    subtitle: "Landing page para um evento sobre saúde, tecnologia e inovação",
     description:
       "Uma landing page criada para o evento CIPMP, que se concentra em saúde, tecnologia e inovação. A página apresenta um design moderno com elementos interativos para engajar visitantes e fornecer informações sobre o cronograma, palestrantes e processo de inscrição.",
     technologies: ["Next.js", "TypeScript", "Node.js"],

@@ -148,7 +148,9 @@ export default function ProjectGallery({ locale }: ProjectGalleryProps) {
                 >
                   {project.title}
                 </h3>
-                <p className="text-white/40 text-sm mt-0.5">{project.subtitle}</p>
+                <p className="mt-0.5 line-clamp-2 max-w-[48ch] text-sm text-white/40">
+                  {project.description}
+                </p>
               </div>
             </div>
 
@@ -332,7 +334,9 @@ export default function ProjectGallery({ locale }: ProjectGalleryProps) {
                     <h3 className="text-3xl md:text-4xl font-black text-white tracking-tight">
                       {selected.title}
                     </h3>
-                    <p className="text-white/50 mt-1">{selected.subtitle}</p>
+                    <p className="mt-1 line-clamp-2 max-w-[54ch] text-white/50">
+                      {selected.description}
+                    </p>
                   </div>
 
                   <button

@@ -12,6 +12,11 @@ type ProjectsText = {
   title: string;
   description: string;
   scrollHint: string;
+  openDetails: string;
+  detailsTitle: string;
+  featuresTitle: string;
+  durationLabel: string;
+  modalGalleryAlt: string;
   previewFallback: string;
   closeButtonAria: string;
   previousImageAria: string;
@@ -54,10 +59,15 @@ export const uiText: Record<SiteLocale, SiteText> = {
     },
     projects: {
       badge: "Featured Work",
-      title: "Featured Work.",
+      title: "Works.",
       description:
-        "A horizontal gallery of product moments, interfaces, and systems that use depth, color, and motion to feel tactile.",
+        "A curated selection of interfaces and systems focused on clarity, visual rhythm, and product impact.",
       scrollHint: "Drag sideways to explore the full set.",
+      openDetails: "Open details",
+      detailsTitle: "Project details",
+      featuresTitle: "Features",
+      durationLabel: "Duration",
+      modalGalleryAlt: "Project preview",
       previewFallback: "Project Preview",
       closeButtonAria: "Close",
       previousImageAria: "Previous project image",
@@ -91,10 +101,15 @@ export const uiText: Record<SiteLocale, SiteText> = {
     },
     projects: {
       badge: "Trabalhos em Destaque",
-      title: "Featured Work.",
+      title: "Trabalhos.",
       description:
-        "Uma galeria horizontal de momentos de produto, interfaces e sistemas que usam profundidade, cor e movimento para parecer tátil.",
+        "Uma selecao de interfaces e sistemas com foco em clareza, ritmo visual e impacto de produto.",
       scrollHint: "Arraste para os lados para explorar tudo.",
+      openDetails: "Abrir detalhes",
+      detailsTitle: "Detalhes do projeto",
+      featuresTitle: "Funcionalidades",
+      durationLabel: "Duracao",
+      modalGalleryAlt: "Previa do projeto",
       previewFallback: "Prévia do Projeto",
       closeButtonAria: "Fechar",
       previousImageAria: "Imagem anterior do projeto",
