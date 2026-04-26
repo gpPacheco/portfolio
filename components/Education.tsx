@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { GraduationCap } from "lucide-react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, Transition } from "@headlessui/react";
+import { Eye, GraduationCap, X } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import LogoMarquee from "@/components/LogoMarquee";
-import { getEducationItems, institutionLogos } from "@/data/education";
+import { EducationItem, getEducationItems, institutionLogos } from "@/data/education";
 import { uiText } from "@/data/ui-text";
 import { SiteLocale } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,8 +22,26 @@ export default function Education({ locale }: EducationProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
   const [failedLogos, setFailedLogos] = useState<Record<string, boolean>>({});
+  const [selectedItem, setSelectedItem] = useState<EducationItem | null>(null);
   const educationItems = getEducationItems(locale);
   const text = uiText[locale].education;
+
+  useEffect(() => {
+    if (selectedItem) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedItem]);
+
+  useEffect(() => {
+    setSelectedItem(null);
+    setFailedLogos({});
+  }, [locale]);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -144,7 +164,7 @@ export default function Education({ locale }: EducationProps) {
             ref={(element) => {
               cardsRef.current[index] = element;
             }}
-            className="group relative overflow-hidden rounded-xl border border-white/10 bg-[#0f0f0f]/70 p-5 transition-colors duration-300"
+            className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0f0f0f]/70 p-5 transition-colors duration-300"
             style={{
               transformStyle: "preserve-3d",
               perspective: "900px",
@@ -153,13 +173,6 @@ export default function Education({ locale }: EducationProps) {
             }}
             data-cursor-hover
           >
-            <div className="pointer-events-none absolute inset-y-4 left-4 w-3 text-accent/45">
-              [
-            </div>
-            <div className="pointer-events-none absolute inset-y-4 right-4 w-3 text-right text-accent/45">
-              ]
-            </div>
-
             <div className="mb-4 flex items-center gap-3">
               <div className="grid h-9 w-9 place-items-center rounded-md border border-white/10 bg-black/35">
                 {item.logo ? (
@@ -186,8 +199,28 @@ export default function Education({ locale }: EducationProps) {
               </span>
             </div>
 
-            <h3 className="pr-3 text-lg font-semibold tracking-tight text-white">{item.title}</h3>
-            <p className="mt-2 text-sm text-white/55">{item.institution}</p>
+            <div className="flex flex-1 flex-col">
+              <h3 className="pr-3 text-lg font-semibold tracking-tight text-white">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm text-white/55">{item.institution}</p>
+
+              {item.image && (
+                <div className="mt-auto pt-5">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedItem(item)}
+                    className={cn(
+                      "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5",
+                      "text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-white/80",
+                      "transition-all duration-300 hover:border-accent/40 hover:bg-accent/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent/60 focus:ring-offset-2 focus:ring-offset-black",
+                    )}
+                  >
+                    <Eye size={14} />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -195,6 +228,71 @@ export default function Education({ locale }: EducationProps) {
       <div className="relative z-10 mt-14">
         <LogoMarquee logos={institutionLogos} />
       </div>
+
+      <Transition appear show={Boolean(selectedItem)} as={Fragment}>
+        <Dialog as="div" className="relative z-50" onClose={() => setSelectedItem(null)}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-200"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <DialogBackdrop className="fixed inset-0 bg-black/80 backdrop-blur-sm" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto px-4 py-6 md:px-8 md:py-10">
+            <div className="flex min-h-full items-center justify-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-200"
+                enterFrom="opacity-0 translate-y-6 scale-[0.98]"
+                enterTo="opacity-100 translate-y-0 scale-100"
+                leave="ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0 scale-100"
+                leaveTo="opacity-0 translate-y-4 scale-[0.98]"
+              >
+                <DialogPanel className="relative w-full max-w-3xl overflow-hidden rounded-[28px] border border-white/10 bg-[#111111] text-white shadow-[0_30px_120px_rgba(0,0,0,0.6)]">
+                  {selectedItem?.image && (
+                    <div className="relative aspect-[4/3] w-full bg-black/30 md:aspect-[16/10]">
+                      <Image
+                        src={selectedItem.image}
+                        alt={selectedItem.imageAlt ?? selectedItem.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 64rem"
+                        className="object-contain"
+                        priority
+                      />
+                    </div>
+                  )}
+
+                  <div className="flex items-start justify-between gap-6 p-5 md:p-7">
+                    <div>
+                      <DialogTitle className="text-xl font-semibold tracking-tight text-white md:text-2xl">
+                        {selectedItem?.title}
+                      </DialogTitle>
+                      <p className="mt-2 max-w-2xl text-sm leading-6 text-white/55">
+                        {selectedItem?.institution} · {selectedItem?.year}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedItem(null)}
+                      aria-label={uiText[locale].projects.closeButtonAria}
+                      className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white/75 transition-colors duration-300 hover:bg-white/10 hover:text-white"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                </DialogPanel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
     </section>
   );
 }

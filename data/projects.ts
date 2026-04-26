@@ -71,6 +71,20 @@ const enUSProjects: Project[] = [
     tags: ["Landing Page", "Event", "Health Tech"],
     images: [],
   },
+      {
+    id: "Oticket Play",
+    index: "05",
+    title: "Oticket Play",
+    description:
+      "Sportive ticketing platform that offers a seamless experience for fans to purchase tickets for their favorite sports events. The platform provides real-time availability, secure payment options, and personalized recommendations based on user preferences.",
+    technologies: ["Next.js", "TypeScript", "Node.js"],
+    year: "2026",
+    url: "https://oticketplay.com.br",
+    color: "#0a0a0a",
+    accentColor: "#f43f5e",
+    tags: ["Landing Page", "Event", "Health Tech"],
+    images: [],
+  },
 ];
 
 const ptBRProjects: Project[] = [
@@ -128,6 +142,20 @@ const ptBRProjects: Project[] = [
     color: "#0a0a0a",
     accentColor: "#f43f5e",
     tags: ["Landing Page", "Evento", "Tecnologia em Saúde"],
+    images: [],
+  },
+      {
+    id: "Oticket Play",
+    index: "05",
+    title: "Oticket Play",
+    description:
+      "Plataforma de venda de ingressos esportivos que oferece uma experiência fluida para os fãs comprarem ingressos para seus eventos esportivos favoritos. A plataforma fornece disponibilidade em tempo real, opções de pagamento seguras e recomendações personalizadas com base nas preferências do usuário.",
+    technologies: ["Next.js", "TypeScript", "Node.js"],
+    year: "2026",
+    url: "https://oticketplay.com.br",
+    color: "#0a0a0a",
+    accentColor: "#f43f5e",
+    tags: ["Landing Page", "Event", "Health Tech"],
     images: [],
   },
 ];
