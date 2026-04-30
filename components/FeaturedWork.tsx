@@ -80,6 +80,8 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
     left: 0,
     right: 0,
   });
+  const [cardWidth, setCardWidth] = useState(CARD_WIDTH);
+  const [cardStep, setCardStep] = useState(CARD_STEP);
   const [sidePadding, setSidePadding] = useState(0);
   const [xPosition, setXPosition] = useState(0);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
@@ -151,9 +153,15 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
 
     const updateBounds = () => {
       const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+      const nextCardWidth = isDesktop
+        ? CARD_WIDTH
+        : Math.min(CARD_WIDTH, Math.max(viewport.clientWidth - 8, 260));
+      const nextCardStep = nextCardWidth + CARD_GAP;
+      setCardWidth(nextCardWidth);
+      setCardStep(nextCardStep);
       const nextSidePadding = isDesktop
-        ? 0
-        : Math.max((viewport.clientWidth - CARD_WIDTH) / 2, 0);
+        ? 24
+        : Math.max((viewport.clientWidth - nextCardWidth) / 2, 0);
       setSidePadding(nextSidePadding);
       const nextLeft = Math.min(viewport.clientWidth - track.scrollWidth, 0);
       const nextBounds = { left: nextLeft, right: 0 };
@@ -183,7 +191,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
   }, [x]);
 
   const moveCarousel = (direction: 1 | -1) => {
-    const nextX = clampX(x.get() + direction * CARD_STEP, dragBounds);
+    const nextX = clampX(x.get() + direction * cardStep, dragBounds);
 
     animate(x, nextX, {
       type: "spring",
@@ -198,7 +206,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
     info: PanInfo,
   ) => {
     const projectedX = x.get() + info.velocity.x * 0.12;
-    const snappedX = Math.round(projectedX / CARD_STEP) * CARD_STEP;
+    const snappedX = Math.round(projectedX / cardStep) * cardStep;
     const nextX = clampX(snappedX, dragBounds);
 
     animate(x, nextX, {
@@ -217,7 +225,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
       <section
         id="works"
         ref={sectionRef}
-        className="relative isolate overflow-visible border-t border-white/[0.03] bg-background px-6 py-28 md:px-10 lg:px-16"
+        className="relative isolate overflow-visible"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-80"
@@ -225,7 +233,6 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
         >
           <div className="absolute left-[-12%] top-[-6%] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,_rgba(56,189,248,0.22)_0%,_rgba(56,189,248,0.08)_30%,_transparent_70%)] blur-3xl" />
           <div className="absolute right-[-10%] top-[10%] h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,_rgba(255,255,255,0.09)_0%,_rgba(56,189,248,0.05)_35%,_transparent_72%)] blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.05),_transparent_42%)]" />
         </div>
 
         <motion.div
@@ -233,7 +240,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
-          className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col gap-10"
+          className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col gap-10 px-6 md:px-10 lg:px-16"
         >
           <motion.div variants={itemVariants} className="max-w-3xl">
             <p className="mb-4 inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.38em] text-white/45">
@@ -243,9 +250,11 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
             <h2 className="text-[clamp(2.6rem,6vw,5.8rem)] font-black leading-[0.92] tracking-tighter text-white text-balance">
               {text.title}
             </h2>
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/48 md:text-base">
-              {text.description}
-            </p>
+            {text.description ? (
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/48 md:text-base">
+                {text.description}
+              </p>
+            ) : null}
           </motion.div>
         </motion.div>
 
@@ -256,10 +265,10 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
             disabled={!canMovePrev}
             aria-label="Previous works"
             className={cn(
-              "absolute left-1 top-1/2 z-[90] -translate-y-1/2 rounded-2xl border border-white/15 bg-white/10 p-3 backdrop-blur-xl transition-all duration-300 md:left-3",
+              "absolute left-1 top-1/2 z-[90] -translate-y-1/2 rounded-2xl bg-white/10 p-3 backdrop-blur-xl transition-all duration-300 md:left-3",
               "opacity-90 md:opacity-0 md:group-hover:opacity-100",
               canMovePrev
-                ? "text-white/85 hover:scale-105 hover:border-white/25 hover:bg-white/15"
+                ? "text-white/85 hover:scale-105 hover:bg-white/15"
                 : "cursor-not-allowed text-white/25",
             )}
             data-cursor-hover
@@ -273,10 +282,10 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
             disabled={!canMoveNext}
             aria-label="Next works"
             className={cn(
-              "absolute right-1 top-1/2 z-[90] -translate-y-1/2 rounded-2xl border border-white/15 bg-white/10 p-3 backdrop-blur-xl transition-all duration-300 md:right-3",
+              "absolute right-1 top-1/2 z-[90] -translate-y-1/2 rounded-2xl bg-white/10 p-3 backdrop-blur-xl transition-all duration-300 md:right-3",
               "opacity-90 md:opacity-0 md:group-hover:opacity-100",
               canMoveNext
-                ? "text-white/85 hover:scale-105 hover:border-white/25 hover:bg-white/15"
+                ? "text-white/85 hover:scale-105 hover:bg-white/15"
                 : "cursor-not-allowed text-white/25",
             )}
             data-cursor-hover
@@ -287,12 +296,6 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
           <div
             ref={viewportRef}
             className="relative overflow-x-hidden overflow-y-visible pb-10"
-            style={{
-              maskImage:
-                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-            }}
           >
             <div
               ref={orbRef}
@@ -323,7 +326,6 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                 const isActive = hoveredId === project.id;
                 const canVisit =
                   project.url.startsWith("http") && project.url !== "https://";
-                const isOverlapped = index > 0;
 
                 return (
                   <motion.article
@@ -348,18 +350,17 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                     }}
                     transition={{ type: "spring", stiffness: 240, damping: 22 }}
                     className={cn(
-                      "group relative shrink-0 overflow-hidden rounded-[34px] border border-white/10 bg-white/5 shadow-[0_24px_90px_rgba(0,0,0,0.45)] backdrop-blur-2xl",
-                      isOverlapped && "-ml-3 md:-ml-4",
+                      "group relative shrink-0 overflow-hidden rounded-[34px] bg-white/5 backdrop-blur-2xl",
                       isActive ? "z-[36]" : "z-[14]",
                       "h-[480px] w-[352px]",
                     )}
                     style={{
-                      width: `${CARD_WIDTH}px`,
+                      width: `${cardWidth}px`,
                       height: `${CARD_HEIGHT}px`,
                       zIndex: isActive ? 36 : projects.length - index,
                       boxShadow: isActive
-                        ? `0 24px 90px rgba(0,0,0,0.45), 0 0 0 1px ${project.accentColor}66, 0 0 65px ${project.accentColor}24`
-                        : "0 24px 90px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08)",
+                        ? `0 0 65px ${project.accentColor}24`
+                        : "none",
                     }}
                     tabIndex={0}
                     data-cursor-hover
@@ -402,7 +403,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                         </motion.div>
                       </div>
 
-                      <div className="relative mb-5 flex-1 overflow-hidden rounded-[28px] border border-white/10 bg-black/25">
+                      <div className="relative mb-5 flex-1 overflow-hidden rounded-[28px] bg-black/25">
                         <div
                           className="absolute inset-0"
                           style={{
@@ -410,8 +411,8 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                           }}
                         />
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.06),_transparent_55%)] opacity-70" />
-                        <div className="absolute left-6 top-6 h-14 w-14 rounded-full border border-white/10" />
-                        <div className="absolute right-6 bottom-6 h-20 w-20 rounded-full border border-white/10" />
+                        <div className="absolute left-6 top-6 h-14 w-14 rounded-full" />
+                        <div className="absolute right-6 bottom-6 h-20 w-20 rounded-full" />
 
                         <div className="relative z-10 flex h-full items-center justify-center p-5">
                           <h3 className="mx-auto max-w-[12ch] text-center text-2xl font-bold leading-tight tracking-tight text-white text-balance md:text-3xl">
@@ -428,7 +429,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                         {project.technologies.slice(0, 4).map((technology) => (
                           <span
                             key={technology}
-                            className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[0.64rem] uppercase tracking-[0.18em] text-white/42"
+                            className="rounded-full bg-white/5 px-2.5 py-1 font-mono text-[0.64rem] uppercase tracking-[0.18em] text-white/42"
                           >
                             {technology}
                           </span>
@@ -451,7 +452,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                                 e.stopPropagation();
                               }
                             }}
-                            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[0.68rem] uppercase tracking-[0.24em] text-white/70 transition-colors duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                            className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-white/5 px-3 py-2 text-[0.68rem] uppercase tracking-[0.24em] text-white/70 transition-colors duration-300 hover:bg-white/10 hover:text-white"
                             data-cursor-hover
                           >
                             {text.visitSite}
@@ -464,7 +465,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                               e.stopPropagation();
                               openProjectModal(project.id);
                             }}
-                            className="inline-flex cursor-pointer items-center rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[0.68rem] uppercase tracking-[0.24em] text-white/40"
+                            className="inline-flex cursor-pointer items-center rounded-full bg-white/5 px-3 py-2 text-[0.68rem] uppercase tracking-[0.24em] text-white/40"
                             data-cursor-hover
                           >
                             {text.openDetails}

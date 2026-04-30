@@ -41,8 +41,8 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
 
   return (
     <div className="relative overflow-hidden border-y border-white/10 bg-white/[0.02] py-5">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#0a0a0a] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#0a0a0a] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
 
       <div ref={trackRef} className="flex w-max items-center gap-12 px-4 will-change-transform">
         {doubled.map((item, index) => (

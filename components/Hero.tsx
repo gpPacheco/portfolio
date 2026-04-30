@@ -68,7 +68,7 @@ export default function Hero({ locale }: HeroProps) {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(10,10,10,0.85) 100%)",
+            "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(15,15,15,0.85) 100%)",
         }}
         aria-hidden="true"
       />

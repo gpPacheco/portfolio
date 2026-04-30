@@ -117,13 +117,10 @@ export default function Footer({ locale }: FooterProps) {
           {/* Bottom bar */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5"
+            className="flex flex-col md:flex-row items-center justify-center gap-4 pt-8 border-t border-white/5"
           >
             <p className="text-white/20 font-mono text-xs tracking-wider">
               {text.rights}
-            </p>
-            <p className="text-white/20 font-mono text-xs tracking-wider">
-              {text.builtWith}
             </p>
           </motion.div>
         </motion.div>

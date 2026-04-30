@@ -39,7 +39,6 @@ type FooterText = {
   githubDescription: string;
   emailDescription: string;
   rights: string;
-  builtWith: string;
 };
 
 export type SiteText = {
@@ -60,8 +59,7 @@ export const uiText: Record<SiteLocale, SiteText> = {
     projects: {
       badge: "Featured Work",
       title: "Works.",
-      description:
-        "A curated selection of interfaces and systems focused on clarity, visual rhythm, and product impact.",
+      description: "",
       scrollHint: "Drag sideways to explore the full set.",
       openDetails: "Open details",
       detailsTitle: "Project details",
@@ -89,7 +87,6 @@ export const uiText: Record<SiteLocale, SiteText> = {
       githubDescription: "Open source work",
       emailDescription: "Get in touch",
       rights: "© 2026 Gabriel Pacheco. All rights reserved.",
-      builtWith: "Built with Next.js · GSAP · Framer Motion",
     },
   },
   "pt-BR": {
@@ -102,8 +99,7 @@ export const uiText: Record<SiteLocale, SiteText> = {
     projects: {
       badge: "Trabalhos em Destaque",
       title: "Trabalhos.",
-      description:
-        "Uma selecao de interfaces e sistemas com foco em clareza, ritmo visual e impacto de produto.",
+      description: "",
       scrollHint: "Arraste para os lados para explorar tudo.",
       openDetails: "Abrir detalhes",
       detailsTitle: "Detalhes do projeto",
@@ -131,7 +127,6 @@ export const uiText: Record<SiteLocale, SiteText> = {
       githubDescription: "Projetos open source",
       emailDescription: "Entre em contato",
       rights: "© 2026 Gabriel Pacheco. Todos os direitos reservados.",
-      builtWith: "Construído com Next.js · GSAP · Framer Motion",
     },
   },
 };

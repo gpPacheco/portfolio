@@ -98,7 +98,7 @@ export default function MistCanvas() {
       );
       grad.addColorStop(0, "rgba(56,189,248,0.03)");
       grad.addColorStop(0.5, "rgba(56,189,248,0.015)");
-      grad.addColorStop(1, "rgba(10,10,10,0)");
+      grad.addColorStop(1, "rgba(15,15,15,0)");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, width, height);
 
