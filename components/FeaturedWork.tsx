@@ -358,9 +358,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                       width: `${cardWidth}px`,
                       height: `${CARD_HEIGHT}px`,
                       zIndex: isActive ? 36 : projects.length - index,
-                      boxShadow: isActive
-                        ? `0 0 65px ${project.accentColor}24`
-                        : "none",
+                      boxShadow: "none",
                     }}
                     tabIndex={0}
                     data-cursor-hover

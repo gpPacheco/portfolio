@@ -22,6 +22,8 @@ const enUSEducationItems: EducationItem[] = [
     title: "Advanced English Course",
     institution: "CCBEU",
     year: "2026",
+    image: "/ccbeu.jpg",
+    imageAlt: "CCBEU advanced English course certificate",
   },
   {
     id: "aws-saa",
@@ -89,6 +91,8 @@ const ptBREducationItems: EducationItem[] = [
     title: "Curso Avançado de Inglês",
     institution: "CCBEU",
     year: "2026",
+    image: "/ccbeu.jpg",
+    imageAlt: "Certificado do curso avançado de inglês do CCBEU",
   },
   {
     id: "aws-saa",
